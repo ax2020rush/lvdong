@@ -1,0 +1,33 @@
+.van-tabbar{
+  box-shadow: 0 0 10px rgba(0,0,0,.1);
+}
+.van-nav-bar{
+  background: $gbcolor;
+  .van-icon {
+    color: #fff;
+  }
+}
+.van-nav-bar__title{
+  color: #fff;
+}
+.van-icon{
+  font: revert;
+}
+.van-toast{
+  background: rgba(142,7,22,.47);
+}
+.van-cell__title{
+  text-align: left;
+}
+.van-image__loading{
+  background: url("../../assets/img/avatar.png")no-repeat center/100%;
+}
+.van-nav-bar__text{
+  color: #000;
+}
+.animate__animated.animate__fadeInUp {
+  --animate-duration: .5s;
+}
+.van-badge{
+  border: none;
+}

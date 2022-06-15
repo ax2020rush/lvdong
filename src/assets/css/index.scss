@@ -1,0 +1,13 @@
+$bg:#F2F2F5;
+$gbcolor:linear-gradient(145deg, #d71778, #e3917b);
+$btn:linear-gradient(to right, #ed869c, #d71778);
+$ico:#d71778;
+:export{
+  gbcolor:$gbcolor
+}
+@mixin word{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
