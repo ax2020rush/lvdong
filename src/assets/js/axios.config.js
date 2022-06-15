@@ -5,7 +5,7 @@ import qs from 'qs'
 import store from '@/store/index'
 import { loginOut } from './index'
 const instance = axios.create({
-  baseURL: process.env.NODE_ENV === 'development' ? 'https://ld04.a8315.com/' : 'https://ld04.a8315.com/',
+  baseURL: process.env.VUE_APP_ENV,
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded'
   },
