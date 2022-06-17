@@ -29,6 +29,7 @@ export async function loginOut (name = null) {
   if (store.state.token) {
     localStorage.clear()
     sessionStorage.clear()
+    store.commit('UPDATEINFO', null)
     store.commit('UPDATETOKEN', null)
     setTimeout(e => (loginOut()), 500)
   } else {

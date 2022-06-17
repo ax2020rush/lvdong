@@ -13,7 +13,7 @@ const instance = axios.create({
 })// 设置请求头A
 // 添加请求拦截器
 instance.interceptors.request.use(function (config) {
-  if (config.method === 'post' && (config.url.indexOf('tpl/lottery/donation') < 0 && config.url.indexOf('tpl/user/info') < 0 && config.url.indexOf('tpl/user/mail') < 0)) {
+  if (config.method === 'post' && (config.url.indexOf('lottery/donation') < 0 && config.url.indexOf('user/info') < 0 && config.url.indexOf('user/mail') < 0)) {
     const message = ''
     Toast.loading({
       duration: 0,
@@ -34,9 +34,9 @@ instance.interceptors.response.use(function (response) {
     loginOut()
     return response
   }
-  if (response.config.method === 'post' && (response.config.url.indexOf('tpl/lottery/donation') < 0 && response.config.url.indexOf('tpl/user/info') < 0 && response.config.url.indexOf('tpl/user/mail') < 0)) {
+  if (response.config.method === 'post' && (response.config.url.indexOf('lottery/donation') < 0 && response.config.url.indexOf('user/info') < 0 && response.config.url.indexOf('user/mail') < 0)) {
     Toast.clear()
-    if (response.config.url.indexOf('tpl/user/vod_find') < 0 && response.config.url.indexOf('tpl/user/vod_duihuan') < 0 && !response.data.sign) {
+    if (response.config.url.indexOf('user/vod_find') < 0 && response.config.url.indexOf('user/vod_duihuan') < 0 && !response.data.sign) {
       Toast.fail(response.data.msg)
     }
   }

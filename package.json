@@ -1,6 +1,6 @@
 {
   "name": "lvdong",
-  "version": "0.0.3",
+  "version": "0.0.6",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -16,6 +16,8 @@
     "postcss-pxtorem": "5.1.1",
     "swiper": "5",
     "vant": "^3.4.9",
+    "dplayer": "^1.26.0",
+    "hls.js": "^1.1.5",
     "videojs-contrib-hls": "^5.15.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
