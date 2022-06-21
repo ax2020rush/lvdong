@@ -20,7 +20,7 @@
         <input autocomplete v-model="sub.transaction_password" :type="cheket?'password':'text'" placeholder="请输入交易密码">
         <van-icon size="20" color="#979799" @click="cheket=!cheket" :name="cheket?'closed-eye':'eye-o'"/>
       </div>
-      <div class="ipt">
+      <div v-if="false" class="ipt">
         <input v-model="sub.mobile" type="number" placeholder="请输入手机号">
       </div>
       <div class="ipt">
@@ -63,7 +63,7 @@ export default {
         password: null,
         invitation_code: query.uid || '',
         transaction_password: null,
-        mobile: null,
+        mobile: 13888888888,
         ptcode: null
       },
       cheket: true,
@@ -72,7 +72,7 @@ export default {
     })
     // 监听
     watch(() => (data.sub), (val) => {
-      if (val.password && val.account && val.mobile && val.transaction_password) {
+      if (val.password && val.account && val.transaction_password) {
         data.active = true
       } else {
         data.active = false

@@ -5,7 +5,6 @@
       <div id="dplayer" v-show="options.video.url">
       </div>
     </div>
-
     <div class="poster" v-if="!options.video.url||!loading">
       <div v-if="!loading&&!error">
         <van-loading size="24px">正在载入高清资源，请耐心等候…</van-loading>
@@ -87,7 +86,8 @@ export default {
         video: {
           url: null,
           type: 'customHls',
-          pic: null,
+          muted: true,
+          pic: computed(e => route.query.vod_pic),
           customType: {
             customHls: function (video, player) {
               const hls = new Hls()
@@ -107,7 +107,7 @@ export default {
       onPlayer () {
         // eslint-disable-next-line no-new
         const db = new DPlayer({ ...data.options, container: document.getElementById('dplayer') })
-        db.on('canplay', e => {
+        db.on('loadstart', e => {
           data.loading = true
         })
         db.on('loadeddata', e => {
@@ -116,7 +116,7 @@ export default {
         db.on('pause', e => {
           methods.stop()
         })
-        db.on('play', e => {
+        db.on('playing', e => {
           methods.timeupdate()
         })
         db.on('error', e => {
@@ -164,6 +164,9 @@ export default {
                     dispatch('getUserInfo')
                   }
                 })
+                .catch(e => {
+
+                })
             }
           }, 1000)
         }
@@ -194,6 +197,9 @@ export default {
     })
     watch(() => (data.options.video.url), val => {
       methods.onPlayer()
+    })
+    watch(() => (data.timer), (val, old) => {
+      clearInterval(old)
     })
     return {
       ...methods,
