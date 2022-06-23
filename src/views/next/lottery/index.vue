@@ -1,6 +1,6 @@
 <template>
   <div class="lottery">
-    <van-nav-bar left-arrow @click-left="onClickLeft" @click-right="show=true" right-text="切换任务" :title="query.title"/>
+    <van-nav-bar left-arrow @click-left="onClickLeft" @click-right="show=true" right-text="切换窗口" :title="query.title"/>
     <div v-if="his" class="history">
       <div class="animate__animated animate__fadeInDown">
         <div class="left" v-if="lottery">
@@ -17,13 +17,13 @@
                 <span :class="'idem'+s" v-for="s in v.opencode.split(',')" :key="s"></span>
               </div>
               <div class="ball" v-else>
-                <p>正在开奖中</p>
+                <p>正在结算中</p>
               </div>
               <div class="res" v-if="v.opencode">
                 <span>{{ v.opencode.split(',').reduce((a, b) => (parseInt(a) + parseInt(b))) }}</span>
-                <span>{{ v.opencode.split(',').reduce((a, b) => (parseInt(a) + parseInt(b))) >= 11 ? '大' : '小' }}</span>
+                <span>{{ v.opencode.split(',').reduce((a, b) => (parseInt(a) + parseInt(b))) >= 11 ? lottery.title[0].title : lottery.title[1].title  }}</span>
                 <span>{{
-                    v.opencode.split(',').reduce((a, b) => (parseInt(a) + parseInt(b))) % 2 === 0 ? '双' : '单'
+                    v.opencode.split(',').reduce((a, b) => (parseInt(a) + parseInt(b))) % 2 === 0 ? lottery.title[3].title : lottery.title[2].title
                   }}</span>
               </div>
             </li>
@@ -49,12 +49,12 @@
             <span :class="'idem'+s" v-for="s in lastcode" :key="s"></span>
           </div>
           <div class="ball" v-else>
-            <p>正在开奖中</p>
+            <p>正在结算中</p>
           </div>
           <div class="res" v-if="lastcode">
             <span>{{ lastcode.reduce((a, b) => (parseInt(a) + parseInt(b))) }}</span>
-            <span>{{ lastcode.reduce((a, b) => (parseInt(a) + parseInt(b))) >= 11 ? '大' : '小' }}</span>
-            <span>{{ lastcode.reduce((a, b) => (parseInt(a) + parseInt(b))) % 2 === 0 ? '双' : '单' }}</span>
+            <span>{{ lastcode.reduce((a, b) => (parseInt(a) + parseInt(b))) >= 11 ? lottery.title[0].title : lottery.title[1].title }}</span>
+            <span>{{ lastcode.reduce((a, b) => (parseInt(a) + parseInt(b))) % 2 === 0 ? lottery.title[3].title : lottery.title[2].title  }}</span>
           </div>
         </div>
         <div class="right">
@@ -83,8 +83,8 @@
             item:i,
             type:0
             })" class="idx0" v-for="(i,k) in wanfa[idx].data[idx2].data" :key="k">
-              <p>{{ i.number }}</p>
-              <span>赔率({{ i.rate }})</span>
+              <p>{{ i.playtitle }}</p>
+              <span>({{ i.rate }})</span>
             </div>
           </div>
           <div class="idx1" v-if="idx===1&&idx2===0">
@@ -150,7 +150,7 @@
     </div>
     <div class="mask animate__animated animate__fadeInUp" v-if="maskShow">
       <div class="title">
-        <p>当前选号: <span>{{ idx !== 2 ? orderList.map(e => (e.number)).join(',') : numberArray.join(',') }}</span></p>
+        <p>当前选号: <span>{{ idx !== 2 ? orderList.map(e => (e.playtitle)).join(',') : numberArray.join(',') }}</span></p>
         <div>
           <van-icon name="arrow"/>
           <van-icon name="arrow"/>
@@ -193,7 +193,7 @@
       </div>
       <div class="content">
         <div>
-          <span>{{ idx !== 2 ? orderList.map(e => (e.number)).join(',') : numberArray.join(',') }}</span>
+          <span>{{ idx !== 2 ? orderList.map(e => (e.playtitle)).join(',') : numberArray.join(',') }}</span>
           <p>标注选号 {{ orderList.length }}注X{{
               parseFloat(nowMoney).toFixed(2)
             }}CNY={{ parseFloat(orderList.length * nowMoney).toFixed(2) }}CNY</p>
@@ -999,7 +999,7 @@ export default {
           background: #e6c3a1;
           color: #fff;
           display: inline-block;
-          font-size: .24rem;
+          font-size: 25px;
           padding: 6px 0;
         }
 
@@ -1200,7 +1200,8 @@ export default {
     div {
       width: 100px;
       height: 100px;
-
+      overflow: hidden;
+      border-radius: 0.6rem;
       img {
         width: 100%;
       }

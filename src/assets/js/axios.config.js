@@ -43,7 +43,7 @@ instance.interceptors.response.use(function (response) {
   return response
 }, function (error) {
   console.log(error)
-  Toast.fail('链接超时,请刷新页面')
+  Toast.fail('网络错误，请稍后重试')
   return Promise.reject(error)
 })
 export const api = {

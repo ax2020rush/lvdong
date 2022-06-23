@@ -34,7 +34,7 @@
         </div>
         <div class="content">
           <h1>您没有可用观影劵</h1>
-          <a :href="kfurl" target="_blank">联系导师或接待员</a>
+          <a :href="kfurl" target="_blank">联系客服或接待员</a>
           <p>我的观影劵：<span>0张</span></p>
         </div>
       </div>
@@ -128,7 +128,7 @@ export default {
         if (!data.isDh) {
           data.timer = setInterval(e => {
             data.number++
-            if (data.number > 10) {
+            if (data.number > 5) {
               clearInterval(data.timer)
               if (!data.info.count) {
                 data.show = true
