@@ -10,7 +10,7 @@
     </div>
     <form>
       <div class="ipt">
-        <input v-model="sub.account" type="text" placeholder="请输入用户名">
+        <input v-model="sub.account" type="text" @input="sub.account=sub.account.replace(/[\W]/g,'')" placeholder="请输入用户名">
       </div>
       <div class="ipt">
         <input autocomplete v-model="sub.password" :type="cheket?'password':'text'" placeholder="请输入登录密码">
@@ -85,6 +85,9 @@ export default {
     const methods = {
       onClickLeft,
       async submit () {
+        if (!isNaN(data.sub.account[0])) {
+          return Toast.fail('用户名必须以英文开头')
+        }
         if (!data.checked) {
           return Toast({
             type: 'fail',

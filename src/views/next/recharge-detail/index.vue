@@ -15,8 +15,8 @@
       <van-cell-group v-if="list.length">
         <van-cell v-for="(i,k) in list" :key="k" :title="'兑换积分'+i.amount+'CNY'"   :label="formatDate(i.oddtime)" >
           <template #value>
-            <span :style="{color:sliceStr(i.state).color}">{{sliceStr(i.state).t}}</span>
-<!--            <van-button type="primary" color="#cfab98" size="mini">查看</van-button>-->
+            <span v-if="sliceStr(i.state)" :style="{color:sliceStr(i.state).color}">{{sliceStr(i.state).t}}</span>
+            <span v-if="i.reason">驳回原因:{{i.reason}}</span>
           </template>
         </van-cell>
 
@@ -88,7 +88,7 @@ export default {
             t: '待审核',
             color: '#979797'
           }
-        } else if (n === 0) {
+        } else if (n === 1) {
           return {
             t: '已打款',
             color: '#3ad741'
@@ -118,7 +118,9 @@ export default {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-
+    span:last-child{
+      font-size: .25rem;
+    }
     button{
       width: 50px;
       font-size: 12px;
